@@ -15,7 +15,7 @@ services:
         volume:
           nocopy: true
       - type: bind
-        source: .
+        source: ./backend
         target: /work/app
       - type: volume
         source: psysh-store
@@ -39,8 +39,9 @@ services:
         volume:
           nocopy: true
       - type: bind
-        source: .
-        target: /work/app:delegated
+        source: ./backend
+        target: /work/app
+        consistency: delegated
     depends_on:
       db:
         condition: service_healthy

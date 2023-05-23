@@ -17,13 +17,11 @@ endif
 endif
 endif
 create-project:
+	mkdir backend
 	@make copy-env
 	@make build
 	@make up
-	docker compose exec app mkdir app-tmp
-	docker compose exec app composer create-project --prefer-dist laravel/laravel app-tmp
-	docker compose exec app mv app-tmp/* . --no-clobber
-	docker compose exec app rm -rf app-tmp
+	docker compose exec app composer create-project --prefer-dist laravel/laravel .
 	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
