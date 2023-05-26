@@ -1,8 +1,8 @@
-# Laravel8 用テンプレート
+# Laravel10 用テンプレート
 
 ## 概要
 
-- Laravel8 の Docker テンプレート
+- Laravel10 API モード の Docker テンプレート
 - php8+mysql8+Nginx
 
 ## 必要なソフトウェア
@@ -17,19 +17,10 @@
 
 ※Makefile は Mac の場合は Xcode のコマンドラインツールに同梱
 
-## 新規プロジェクトの作成手順
-
-1. IP に 127.0.0.1~127.0.0.255 の値を設定して以下のコマンドを実行
-
-   ```
-   make create-project IP=127.0.0.*
-   ```
-
 ## 既存プロジェクトへの配置手順
 
 1. ファイルを既存プロジェクトのルートディレクトリに配置
 2. env.example の`DB_USER`、`DB_PASSWORD` 、`DB_DATABASE`をアプリケーション側の設定と合わせる
-3. CakePHP の`./config/app_local.php`の`Datasources.default.host`を`db`に書き換える
 
 ## 開発環境構築手順
 
