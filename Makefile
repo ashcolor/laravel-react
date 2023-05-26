@@ -16,18 +16,36 @@ ifeq ($(shell uname),Darwin)
 endif
 endif
 endif
+copy-laravel-env:
+ifdef IP
+	cp backend/.env.example backend/.env
+ifeq ($(OS),Windows_NT)
+	sed -i -e 's/127.0.0.1/$(IP)/g' backend/.env
+else
+ifeq ($(shell uname),Linux)
+	sed -i -e 's/127.0.0.1/$(IP)/g' backend/.env
+endif
+ifeq ($(shell uname),Darwin)
+	sed -i '' -e 's/127.0.0.1/$(IP)/g' backend/.env
+endif
+endif
+endif
 create-project:
-	mkdir backend
-	@make copy-env
-	@make build
-	@make up
-	docker compose exec app composer create-project --prefer-dist laravel/laravel .
-	docker compose exec app php artisan key:generate
-	docker compose exec app php artisan storage:link
-	docker compose exec app chmod -R 777 storage bootstrap/cache
-	@make fresh
+# mkdir backend
+# @make copy-env
+# @make build
+# @make up
+# docker compose exec app composer create-project --prefer-dist laravel/laravel .
+# docker compose exec app php artisan key:generate
+# docker compose exec app php artisan storage:link
+# docker compose exec app chmod -R 777 storage bootstrap/cache
+# @make fresh
+
+# docker compose exec app composer require laravel/breeze --dev
+# docker compose exec app php artisan breeze:install api
 init:
 	@make copy-env
+	@make copy-laravel-env
 	docker compose up -d --build
 	@make composer-install
 	docker compose exec app php artisan key:generate
