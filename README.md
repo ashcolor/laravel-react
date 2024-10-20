@@ -1,9 +1,9 @@
-# Laravel10 用テンプレート
+# Laravel11 用テンプレート
 
 ## 概要
 
-- Laravel10 API モード の Docker テンプレート
-- php8+mysql8+Nginx
+- Laravel11 API モード の Docker テンプレート
+- php8.3+mysql8+Nginx
 
 ## 必要なソフトウェア
 
@@ -21,6 +21,14 @@
 
 1. ファイルを既存プロジェクトのルートディレクトリに配置
 2. env.example の`DB_USER`、`DB_PASSWORD` 、`DB_DATABASE`をアプリケーション側の設定と合わせる
+
+## プロジェクトの作成
+
+backend ディレクトリの中身を削除したあとに以下のコマンドを実行
+
+```bash
+make create-project
+```
 
 ## 開発環境構築手順
 

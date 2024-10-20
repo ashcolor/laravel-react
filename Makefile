@@ -31,18 +31,18 @@ endif
 endif
 endif
 create-project:
-# mkdir backend
-# @make copy-env
-# @make build
-# @make up
-# docker compose exec app composer create-project --prefer-dist laravel/laravel .
-# docker compose exec app php artisan key:generate
-# docker compose exec app php artisan storage:link
-# docker compose exec app chmod -R 777 storage bootstrap/cache
-# @make fresh
+	mkdir backend
+	@make copy-env
+	@make build
+	@make up
+	docker compose exec app composer create-project --prefer-dist laravel/laravel .
+	docker compose exec app php artisan storage:link
+	docker compose exec app chmod -R 777 storage bootstrap/cache
 
-# docker compose exec app composer require laravel/breeze --dev
-# docker compose exec app php artisan breeze:install api
+	docker compose exec app composer require laravel/breeze --dev
+	docker compose exec app php artisan breeze:install api
+
+	@make fresh
 init:
 	@make copy-env
 	@make copy-laravel-env
@@ -86,7 +86,7 @@ log-db-watch:
 	docker compose logs --follow db
 web:
 	docker compose exec web ash
-ap:
+app:
 	docker compose exec app bash
 db:
 	docker compose exec db bash
